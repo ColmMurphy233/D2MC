@@ -1,0 +1,5 @@
+name: D2MC
+version: @version@
+main: xyz.colmmurphy.d2mc.D2MC
+api-version: 1.16
+authors: [ KMurf_ ]
