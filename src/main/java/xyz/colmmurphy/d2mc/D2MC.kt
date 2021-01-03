@@ -7,15 +7,15 @@ import org.bukkit.plugin.java.JavaPlugin
 import xyz.colmmurphy.d2mc.Enums.Secrets
 import xyz.colmmurphy.d2mc.Inbox.Inbox
 import xyz.colmmurphy.d2mc.Listeners.PlayerJoinLeaveListener
+import xyz.colmmurphy.d2mc.Listeners.PlayerDeathListener
 import javax.security.auth.login.LoginException
 
 class D2MC : JavaPlugin() {
 
     override fun onEnable() {
         // Plugin enable logic
-        server.pluginManager.registerEvents(
-            PlayerJoinLeaveListener(), this
-        )
+        server.pluginManager.registerEvents(PlayerJoinLeaveListener(), this,)
+        server.pluginManager.registerEvents(PlayerDeathListener(), this)
         println("Sending online notice to Discord")
 
         Inbox.post("**:green_circle: Server is online :green_circle: " +
@@ -39,5 +39,6 @@ class D2MC : JavaPlugin() {
     override fun onDisable() {
         // Plugin shutdown logic
         println("Shutting down D2MC")
+        Inbox.post("**:octagonal_sign: Server is offline :octagonal_sign:**")
     }
 }
