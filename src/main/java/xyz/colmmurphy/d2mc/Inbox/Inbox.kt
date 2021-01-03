@@ -31,7 +31,7 @@ class Inbox() {
                 val mainGuild: Guild = jda.guilds[0]
                 println("Main guild is set to ${mainGuild.name}")
                 //do the same for all channels
-                val channelsList = mainGuild.channels.toString())
+                val channelsList = mainGuild.channels.toString()
                 for (i in mainGuild.channels) {
                     if (i.id == Secrets.CHANNEL.id) {
                         println("Found main channel")
