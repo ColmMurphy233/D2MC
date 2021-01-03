@@ -16,8 +16,8 @@ class ChatListener : Listener {
             return;
         }
         val timeOfMessage = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"))
-        Inbox.post("**[$timeOfMessage]**" +
-                    "***<__${event.player.name}__>>***" +
+        Inbox.post("**[$timeOfMessage] " +
+                    "<__${event.player.name}__>>**" +
                     " ${event.message}")
     }
 }
