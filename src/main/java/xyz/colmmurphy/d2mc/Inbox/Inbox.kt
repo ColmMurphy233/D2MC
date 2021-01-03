@@ -27,13 +27,11 @@ class Inbox() {
                     .awaitReady()
                 println("Created JDA Instance")
                 //load all guilds (Should only be 1) the bot is in & find the 'main' guild
-                println("[D2MC] list of all Guilds:\n " +
-                        jda.guilds.toString())
+                val guildsList = jda.guilds.toString()
                 val mainGuild: Guild = jda.guilds[0]
                 println("Main guild is set to ${mainGuild.name}")
                 //do the same for all channels
-                println("[D2MC] List of all channels in ${mainGuild.name}\n" +
-                    mainGuild.channels.toString())
+                val channelsList = mainGuild.channels.toString())
                 for (i in mainGuild.channels) {
                     if (i.id == Secrets.CHANNEL.id) {
                         println("Found main channel")
@@ -41,8 +39,8 @@ class Inbox() {
                     }
                 }
                 //remove this piece later, only testing
-                println("[D2MC] Does getGuildById() work? \n " +
-                        jda.getGuildById(Secrets.GUILD.id))
+//                println("[D2MC] Does getGuildById() work? \n " +  //it does
+//                        jda.getGuildById(Secrets.GUILD.id))
                 val mainChannel: TextChannel = mainGuild.getTextChannelById(Secrets.CHANNEL.id)!!
 
                 println("Main channel is set to ${mainChannel.name}")
@@ -56,18 +54,18 @@ class Inbox() {
         }
 
         fun reactMostRecentMsg(emoji: String) {
-            try {
-                val jda: JDA = JDABuilder.createLight(
-                    Secrets.BOT_TOKEN.id,
-                    GatewayIntent.GUILD_MESSAGE_REACTIONS)
-                    .build()
-                    .awaitReady()
-                val chnl: TextChannel = jda.guilds[0].getTextChannelById(Secrets.CHANNEL.id)!!
-                if (chnl.hasLatestMessage()) {
-                    chnl.addReactionById(chnl.latestMessageId, emoji)
-                        .queue()
-                } else println("[D2MC] Couldn't find latest message from channel ${chnl.name}")
-            } catch(ignored: LoginException) {}
+//            try {
+//                val jda: JDA = JDABuilder.createLight(
+//                    Secrets.BOT_TOKEN.id,
+//                    GatewayIntent.GUILD_MESSAGE_REACTIONS)
+//                    .build()
+//                    .awaitReady()
+//                val chnl: TextChannel = jda.guilds[0].getTextChannelById(Secrets.CHANNEL.id)!!
+//                if (chnl.hasLatestMessage()) {
+//                    chnl.addReactionById(chnl.latestMessageId, emoji)
+//                        .queue()
+//                } else println("[D2MC] Couldn't find latest message from channel ${chnl.name}")
+//            } catch(ignored: LoginException) {}
         }
     }
 }
