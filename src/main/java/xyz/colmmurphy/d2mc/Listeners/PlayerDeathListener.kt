@@ -9,6 +9,6 @@ class PlayerDeathListener : Listener {
     @EventHandler
     fun onPlayerDeath(event: PlayerDeathEvent) {
         Inbox.post("**${event.deathMessage}**")
-        //Inbox.reactMostRecentMsg("U+1F1EB")
+        Inbox.reactMostRecentMsg("U+1F1EB")
     }
 }
