@@ -8,7 +8,7 @@ import xyz.colmmurphy.d2mc.Inbox.Inbox
 class AdvancementListener : Listener {
     @EventHandler
     fun onAdvancementGet(event: PlayerAdvancementDoneEvent) {
-        Inbox.post("**__${event.player.name}__ just made the advancement __[${event.eventName}]__")
+        Inbox.post("**__${event.player.name}__ just made the advancement __[${event.advancement.toString()}]__")
 //        Inbox.reactMostRecentMsg("U+1F1F5") //P
 //        Inbox.reactMostRecentMsg("U+1F1F4") //O
 //        Inbox.reactMostRecentMsg("U+1F1EC") //G

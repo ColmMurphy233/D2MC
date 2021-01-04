@@ -20,38 +20,42 @@ class Inbox() {
 
     companion object {
 
-        fun post(msg: String) {
-            try {
-                //create jda instance
-                val jda: JDA = JDABuilder.createLight(Secrets.BOT_TOKEN.id)
-                    .build()
-                    .awaitReady()
-                println("Created JDA Instance")
-                //load all guilds (Should only be 1) the bot is in & find the 'main' guild
-                val guildsList = jda.guilds.toString()
-                val mainGuild: Guild = jda.guilds[0]
-                println("Main guild is set to ${mainGuild.name}")
-                //do the same for all channels
-                val channelsList = mainGuild.channels.toString()
-                for (i in mainGuild.channels) {
-                    if (i.id == Secrets.CHANNEL.id) {
-                        println("Found main channel")
-                        break;
-                    }
-                }
-                //remove this piece later, only testing
-//                println("[D2MC] Does getGuildById() work? \n " +  //it does
-//                        jda.getGuildById(Secrets.GUILD.id))
-                val mainChannel: TextChannel = mainGuild.getTextChannelById(Secrets.CHANNEL.id)!!
+        val jda: JDA = try {
+            JDABuilder.createLight(
+                Secrets.BOT_TOKEN.id,
+                GatewayIntent.GUILD_MESSAGES,
+                GatewayIntent.GUILD_MESSAGE_REACTIONS,
+                GatewayIntent.GUILD_EMOJIS
+            ).build()
+        } catch (l: LoginException) {
+            JDABuilder.createLight(
+                Secrets.BOT_TOKEN.id,
+                GatewayIntent.GUILD_MESSAGES,
+                GatewayIntent.GUILD_MESSAGE_REACTIONS,
+                GatewayIntent.GUILD_EMOJIS
+            ).build()
+        } finally {
+            JDABuilder.createLight(
+                Secrets.BOT_TOKEN.id,
+                GatewayIntent.GUILD_MESSAGES,
+                GatewayIntent.GUILD_MESSAGE_REACTIONS,
+                GatewayIntent.GUILD_EMOJIS
+            ).build()
+        }
 
-                println("Main channel is set to ${mainChannel.name}")
+        val guildsList = jda.guilds
+        val mainGuild: Guild = guildsList[0]
+        val channelsList = mainGuild.channels
+        val mainChannel: TextChannel = mainGuild.getTextChannelById(Secrets.CHANNEL.id)!!
+
+        @Throws(LoginException::class)
+        fun post(msg: String) {
+            println("mainGuild: ${mainGuild.name}\n" +
+                    "mainChannel: ${mainChannel.name}")
 
                 mainChannel.sendMessage(msg)
                     .queue()
                 println("Posted message \"$msg\" to #${mainChannel.name} in ${mainGuild.name}")
-            } catch (l: LoginException) {
-                println("caught LoginException")
-            }
         }
 
         fun reactMostRecentMsg(emoji: String) {
