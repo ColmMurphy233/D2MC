@@ -1,17 +1,11 @@
 package xyz.colmmurphy.d2mc
 
-import net.dv8tion.jda.api.JDA
-import net.dv8tion.jda.api.JDABuilder
-import net.dv8tion.jda.api.requests.GatewayIntent
-import org.bukkit.advancement.Advancement
 import org.bukkit.plugin.java.JavaPlugin
-import xyz.colmmurphy.d2mc.Enums.Secrets
 import xyz.colmmurphy.d2mc.Inbox.Inbox
 import xyz.colmmurphy.d2mc.Listeners.AdvancementListener
 import xyz.colmmurphy.d2mc.Listeners.ChatListener
 import xyz.colmmurphy.d2mc.Listeners.PlayerJoinLeaveListener
 import xyz.colmmurphy.d2mc.Listeners.PlayerDeathListener
-import javax.security.auth.login.LoginException
 
 class D2MC : JavaPlugin() {
 

@@ -1,13 +1,10 @@
 package xyz.colmmurphy.d2mc.Listeners
 
-import net.dv8tion.jda.api.JDA
-import net.dv8tion.jda.api.JDABuilder
 import org.bukkit.Bukkit
 import org.bukkit.event.EventHandler
 import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerQuitEvent
-import xyz.colmmurphy.d2mc.Enums.Secrets
 import xyz.colmmurphy.d2mc.Inbox.Inbox
 
 class PlayerJoinLeaveListener : Listener {
