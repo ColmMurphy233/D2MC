@@ -27,14 +27,12 @@ class Inbox() {
         val mainChannel: TextChannel = mainGuild.getTextChannelById(Secrets.CHANNEL.id)!!
 
         fun post(msg: String) {
-            println("Called post method")
+            //println("Called post method")
             if (mainGuild == null) println("mainGuild is null [line36]")
-            println("mainGuild: #${mainGuild.name}\n" +
-                    "mainChannel: ${mainChannel.name}")
 
                 mainChannel.sendMessage(msg)
                     .queue()
-                println("Posted message \"$msg\" to #${mainChannel.name} in ${mainGuild.name}")
+                //println("Posted message \"$msg\" to #${mainChannel.name} in ${mainGuild.name}")
         }
 
         fun reactMostRecentMsg(emoji: String) {

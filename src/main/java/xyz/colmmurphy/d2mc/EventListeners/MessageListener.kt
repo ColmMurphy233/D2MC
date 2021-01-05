@@ -25,7 +25,7 @@ class MessageListener : ListenerAdapter() {
         if (event.isWebhookMessage) return;
         if (event.message.contentRaw.toLowerCase().equals("ip")) {
             event.channel.sendMessage(
-                "@${event.author.name}${event.author.discriminator} the ip is ```185.99.138.119```"
+                "@${event.author.name}#${event.author.discriminator} the ip is ```185.99.138.119```"
             ).queue()
             return;
         }

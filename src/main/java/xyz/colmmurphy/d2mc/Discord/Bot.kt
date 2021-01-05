@@ -20,7 +20,6 @@ class Bot : ListenerAdapter() {
             val jda: JDA = JDABuilder.createLight(
                 Secrets.BOT_TOKEN.id,
                 GatewayIntent.GUILD_MESSAGES,
-                GatewayIntent.GUILD_PRESENCES
             )
                 .disableCache(CacheFlag.VOICE_STATE)
                 .addEventListeners(MessageListener())
