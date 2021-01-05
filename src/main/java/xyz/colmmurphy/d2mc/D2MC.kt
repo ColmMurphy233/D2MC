@@ -1,11 +1,13 @@
 package xyz.colmmurphy.d2mc
 
 import org.bukkit.plugin.java.JavaPlugin
+import xyz.colmmurphy.d2mc.Enums.Secrets
 import xyz.colmmurphy.d2mc.Inbox.Inbox
 import xyz.colmmurphy.d2mc.Listeners.AdvancementListener
 import xyz.colmmurphy.d2mc.Listeners.ChatListener
 import xyz.colmmurphy.d2mc.Listeners.PlayerJoinLeaveListener
 import xyz.colmmurphy.d2mc.Listeners.PlayerDeathListener
+import xyz.colmmurphy.d2mc.Discord.Bot
 
 class D2MC : JavaPlugin() {
 
@@ -19,6 +21,9 @@ class D2MC : JavaPlugin() {
 
         Inbox.post("**:green_circle: Server is online :green_circle: " +
                 "say ```ip``` to get the current IP address**")
+
+        Bot.startUp()
+        println("[D2MC] Loading Discord Bot")
 
 //        try {
 //            val jda: JDA = JDABuilder.createLight(
