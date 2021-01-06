@@ -40,14 +40,6 @@ class Inbox() {
                 .queue()
         }
 
-        fun getListOfGuilds(): MutableList<Guild> {
-            val jdaTemp: JDA = JDABuilder.createLight(
-                Secrets.BOT_TOKEN.id,
-                GatewayIntent.GUILD_MESSAGES
-            ).build()
-            return jdaTemp.guilds
-        }
-
         @Throws(LoginException::class)
         fun createJDA(): JDA {
             return (JDABuilder.createLight(
