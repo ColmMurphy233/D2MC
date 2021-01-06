@@ -31,7 +31,7 @@ class MessageListener : ListenerAdapter() {
             "ip" -> {
                 event.channel.sendMessage(
                         "@${event.author.asTag} the ip address is ```185.99.138.119```"
-                )
+                ).queue()
                 return;
             }
             "playerlist" -> {
@@ -41,7 +41,7 @@ class MessageListener : ListenerAdapter() {
                 } else (
                         "There are ${playersOnline.size} players currently online\n" +
                         playersOnline.joinToString(", ")
-                ))
+                )).queue()
                 return;
             }
         }
