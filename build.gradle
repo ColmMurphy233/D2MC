@@ -7,7 +7,7 @@ plugins {
 }
 
 group = 'xyz.colmmurphy'
-version = '1.2.2'
+version = '1.2.3'
 
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
@@ -29,6 +29,7 @@ repositories {
 dependencies {
     compileOnly 'com.destroystokyo.paper:paper-api:1.16.4-R0.1-SNAPSHOT'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")
     compile ('net.dv8tion:JDA:4.2.0_168') {
         exclude module: 'opus-java'
     }
