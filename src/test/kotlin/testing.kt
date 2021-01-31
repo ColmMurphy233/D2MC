@@ -1,9 +1,14 @@
-import xyz.colmmurphy.d2mc.Inbox.Inbox
+
+import Inbox.Inbox
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 fun main() {
-    println("Starting")
-    val ib: Inbox = Inbox()
-    ib.main()
-    Inbox.post("testing123")
-    println("Finished")
+    GlobalScope.launch {
+        delay(2000)
+        Inbox.post("Hello world")
+    }
+    Inbox.reactMostRecentMSG("Smiley")
+    Thread.sleep(3000)
 }
