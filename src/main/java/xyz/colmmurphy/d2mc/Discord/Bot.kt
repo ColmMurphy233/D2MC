@@ -34,8 +34,8 @@ class Bot : ListenerAdapter() {
                 .build()
                 .awaitReady()
             val env = dotenv()
-            if (jda.getGuildById(env["GUILD"]) == null) println("Could not find Discord server with ID ${env["GUILD"]}")
-            if (jda.getTextChannelById(env["CHANNEL"]) == null) println("Could not find text channel with ID ${env["CHANNEL"]}")
+            //if (jda.getGuildById(env["GUILD"]) == null) println("Could not find Discord server with ID ${env["GUILD"]}")
+            //if (jda.getTextChannelById(env["CHANNEL"]) == null) println("Could not find text channel with ID ${env["CHANNEL"]}")
             tc = jda.getGuildById(env["GUILD"])!!.getTextChannelById(env["CHANNEL"])!!
         }
     }

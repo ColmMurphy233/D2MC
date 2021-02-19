@@ -16,13 +16,13 @@ class D2MC : JavaPlugin() {
         server.pluginManager.registerEvents(PlayerDeathListener(), this)
         server.pluginManager.registerEvents(ChatListener(), this)
         server.pluginManager.registerEvents(AdvancementListener(), this)
+        Bot.startUp()
+        println("[D2MC] Loading Discord Bot")
         println("Sending online notice to Discord")
 
         Inbox.post("**:green_circle: Server is online :green_circle: " +
                 "say ```ip``` to get the current IP address**")
 
-        Bot.startUp()
-        println("[D2MC] Loading Discord Bot")
 
 //        try {
 //            val jda: JDA = JDABuilder.createLight(

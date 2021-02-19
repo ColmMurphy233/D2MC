@@ -7,6 +7,7 @@ import net.dv8tion.jda.api.JDABuilder
 import net.dv8tion.jda.api.entities.*
 import net.dv8tion.jda.api.requests.GatewayIntent
 import org.bukkit.entity.Player
+import xyz.colmmurphy.d2mc.Discord.Bot
 import javax.security.auth.login.LoginException
 
 /**
@@ -23,22 +24,17 @@ class Inbox() {
 
         val guildsList = jda.guilds
         val mainGuild: Guild = guildsList[0]
-        val channelsList = mainGuild.channels
-        val mainChannel: TextChannel = mainGuild.getTextChannelById(dotenv()["CHANNEL"])!!
+//        val channelsList = mainGuild.channels
+//        val mainChannel: TextChannel? = mainGuild.getTextChannelById(dotenv()["CHANNEL"])
 
         fun post(msg: String) {
-            //println("Called post method")
-            if (mainGuild == null) println("mainGuild is null [line36]")
-
-                mainChannel.sendMessage(msg)
-                    .queue()
-                //println("Posted message \"$msg\" to #${mainChannel.name} in ${mainGuild.name}")
+//            if (mainGuild == null) println("mainGuild is null [line36]")
+//
+//                mainChannel!!.sendMessage(msg)
+//                    .queue()
+            Bot.tc.sendMessage(msg).queue()
         }
 
-        fun reactMostRecentMsg(emoji: String) {
-            mainChannel.addReactionById(mainChannel.latestMessageId, emoji)
-                .queue()
-        }
 
         @Throws(LoginException::class)
         fun createJDA(): JDA {
