@@ -1,5 +1,6 @@
 src/main/kotlin/xyz/colmmurphy/d2mc/Enums/Secrets.kt
 Secrets.kt
+.env
 # User-specific stuff
 .idea/
 

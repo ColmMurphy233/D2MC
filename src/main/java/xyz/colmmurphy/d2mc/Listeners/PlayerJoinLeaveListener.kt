@@ -15,12 +15,12 @@ class PlayerJoinLeaveListener : Listener {
         if (event.player.name == "Bstan") {
             Bukkit.broadcastMessage("Bstan")
         } else Bukkit.broadcastMessage("Welcome to the server ${event.player.name}")
-        Inbox.post("[${LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"))}]**${event.player.name} joined the game**")
+        Inbox.post("**[${LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"))}]${event.player.name} joined the game**")
     }
 
     @EventHandler
     fun onPlayerLeave(event: PlayerQuitEvent) {
         Bukkit.broadcastMessage("${event.player.name} left the game")
-        Inbox.post("[${LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"))}]**${event.player.name} left the game**")
+        Inbox.post("**[${LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"))}]${event.player.name} left the game**")
     }
 }

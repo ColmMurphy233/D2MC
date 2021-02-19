@@ -1,7 +1,6 @@
 package xyz.colmmurphy.d2mc
 
 import org.bukkit.plugin.java.JavaPlugin
-import xyz.colmmurphy.d2mc.Enums.Secrets
 import xyz.colmmurphy.d2mc.Inbox.Inbox
 import xyz.colmmurphy.d2mc.Listeners.AdvancementListener
 import xyz.colmmurphy.d2mc.Listeners.ChatListener

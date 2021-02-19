@@ -1,12 +1,12 @@
 
 package xyz.colmmurphy.d2mc.Inbox;
 
+import io.github.cdimascio.dotenv.dotenv
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.JDABuilder
 import net.dv8tion.jda.api.entities.*
 import net.dv8tion.jda.api.requests.GatewayIntent
 import org.bukkit.entity.Player
-import xyz.colmmurphy.d2mc.Enums.Secrets;
 import javax.security.auth.login.LoginException
 
 /**
@@ -24,7 +24,7 @@ class Inbox() {
         val guildsList = jda.guilds
         val mainGuild: Guild = guildsList[0]
         val channelsList = mainGuild.channels
-        val mainChannel: TextChannel = mainGuild.getTextChannelById(Secrets.CHANNEL.id)!!
+        val mainChannel: TextChannel = mainGuild.getTextChannelById(dotenv()["CHANNEL"])!!
 
         fun post(msg: String) {
             //println("Called post method")
@@ -43,7 +43,7 @@ class Inbox() {
         @Throws(LoginException::class)
         fun createJDA(): JDA {
             return (JDABuilder.createLight(
-                Secrets.BOT_TOKEN.id,
+                dotenv()["BOT_TOKEN"],
                 GatewayIntent.GUILD_MESSAGES,
                 GatewayIntent.GUILD_MESSAGE_REACTIONS
             ).build())

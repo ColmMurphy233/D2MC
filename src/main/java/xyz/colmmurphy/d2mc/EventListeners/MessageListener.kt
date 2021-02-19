@@ -1,5 +1,6 @@
 package xyz.colmmurphy.d2mc.EventListeners
 
+import io.github.cdimascio.dotenv.dotenv
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.JDABuilder
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
@@ -8,7 +9,6 @@ import net.dv8tion.jda.api.requests.GatewayIntent
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.entity.Player
-import xyz.colmmurphy.d2mc.Enums.Secrets
 import java.awt.Color
 import javax.security.auth.login.LoginException
 
@@ -23,7 +23,7 @@ class MessageListener : ListenerAdapter() {
     }
 
     override fun onMessageReceived(event: MessageReceivedEvent) {
-        if (!event.channel.id.equals(Secrets.CHANNEL.id)) return;
+        if (!event.channel.id.equals(dotenv()["CHANNEL"])) return;
         if (event.author.isBot) return;
         if (event.isWebhookMessage) return;
         val cmd: List<String> = event.message.contentRaw.toLowerCase().split(" ")
@@ -34,6 +34,7 @@ class MessageListener : ListenerAdapter() {
                 ).queue()
                 return;
             }
+
             "playerlist" -> {
                 val playersOnline = Bukkit.getOnlinePlayers()
                 event.channel.sendMessage(if (playersOnline.isEmpty()) {
@@ -43,6 +44,21 @@ class MessageListener : ListenerAdapter() {
                         playersOnline.joinToString(", ")
                 )).queue()
                 return;
+            }
+
+            "map" -> {
+                event.channel.sendMessage("http://185.99.138.119:6969/").queue()
+            }
+
+            "dynmap" -> {
+                event.channel.sendMessage("http://185.99.138.119:6969/").queue()
+            }
+
+            "tps" -> {
+                val tps = Bukkit.getTPS()
+                event.channel.sendMessage("1m: **${tps[0]}**\n" +
+                        "5m: **${tps[1]}**\n" +
+                        "15m: **${tps[2]}**").queue()
             }
         }
         Bukkit.broadcastMessage("[Discord]<${event.author.name}>${event.message.contentRaw}")
