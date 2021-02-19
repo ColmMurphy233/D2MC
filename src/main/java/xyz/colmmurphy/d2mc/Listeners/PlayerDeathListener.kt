@@ -14,7 +14,8 @@ class PlayerDeathListener : Listener {
     @EventHandler
     fun onPlayerDeath(event: PlayerDeathEvent) {
         GlobalScope.launch {
-            Bot.tc.sendMessage("**${event.deathMessage}**").queue { message -> message.addReaction("U+1F1EB") }
+            Bot.tc.sendMessage("**${event.deathMessage}**")
+                .queue { message -> message.addReaction("U+1F1EB").queue() }
 //            Inbox.post("**${event.deathMessage}**")
 //            delay(1000)
 //            Inbox.reactMostRecentMsg("U+1F1EB")

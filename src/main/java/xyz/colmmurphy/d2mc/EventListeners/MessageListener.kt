@@ -37,21 +37,25 @@ class MessageListener : ListenerAdapter() {
 
             "playerlist" -> {
                 val playersOnline = Bukkit.getOnlinePlayers()
-                event.channel.sendMessage(if (playersOnline.isEmpty()) {
-                    "There are no players currently online :("
-                } else (
-                        "There are ${playersOnline.size} players currently online\n" +
-                        playersOnline.joinToString(", ")
-                )).queue()
+                if (playersOnline.isEmpty()){
+                    event.channel.sendMessage("There are no players online :(")
+                        .queue { msg -> msg.addReaction("U+2639").queue() }
+                } else {
+                    var str = "There are ${playersOnline.size} people online\n"
+                    for (i in playersOnline) str += i.name + "\n"
+                    event.channel.sendMessage(str).queue()
+                }
                 return;
             }
 
             "map" -> {
                 event.channel.sendMessage("http://185.99.138.119:6969/").queue()
+                return;
             }
 
             "dynmap" -> {
                 event.channel.sendMessage("http://185.99.138.119:6969/").queue()
+                return;
             }
 
             "tps" -> {
@@ -59,6 +63,7 @@ class MessageListener : ListenerAdapter() {
                 event.channel.sendMessage("1m: **${tps[0]}**\n" +
                         "5m: **${tps[1]}**\n" +
                         "15m: **${tps[2]}**").queue()
+                return
             }
         }
         Bukkit.broadcastMessage("[Discord]<${event.author.name}>${event.message.contentRaw}")
