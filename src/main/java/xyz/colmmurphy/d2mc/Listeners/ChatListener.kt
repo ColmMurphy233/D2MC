@@ -3,6 +3,8 @@ package xyz.colmmurphy.d2mc.Listeners
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.AsyncPlayerChatEvent
+import xyz.colmmurphy.d2mc.Discord.Bot
+import xyz.colmmurphy.d2mc.Discord.Bot.Companion.tc
 import xyz.colmmurphy.d2mc.Inbox.Inbox
 
 import java.time.LocalDateTime
@@ -16,8 +18,8 @@ class ChatListener : Listener {
             return;
         }
         val timeOfMessage = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"))
-        Inbox.post("**[$timeOfMessage] " +
+        Bot.tc.sendMessage("**[$timeOfMessage] " +
                     "<${event.player.name}>**" +
-                    " ${event.message}")
+                    " ${event.message}").queue()
     }
 }
