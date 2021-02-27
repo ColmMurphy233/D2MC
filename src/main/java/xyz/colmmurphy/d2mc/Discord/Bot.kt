@@ -10,12 +10,13 @@ import net.dv8tion.jda.api.requests.GatewayIntent
 import net.dv8tion.jda.api.utils.ChunkingFilter
 import net.dv8tion.jda.api.utils.cache.CacheFlag
 import xyz.colmmurphy.d2mc.EventListeners.MessageListener
+import java.time.Instant
 import javax.security.auth.login.LoginException
 
 class Bot : ListenerAdapter() {
 
     companion object {
-
+        val bootTime = Instant.now().epochSecond
         lateinit var jda: JDA
         lateinit var tc: TextChannel
         @Throws(LoginException::class, InterruptedException::class)
@@ -30,6 +31,7 @@ class Bot : ListenerAdapter() {
                 .setChunkingFilter(ChunkingFilter.ALL)
                 .disableCache(CacheFlag.VOICE_STATE)
                 .addEventListeners(MessageListener())
+                .addEventListeners(CommandListener())
                 .setActivity(Activity.playing("minecraft on 185.99.138.119"))
                 .build()
                 .awaitReady()

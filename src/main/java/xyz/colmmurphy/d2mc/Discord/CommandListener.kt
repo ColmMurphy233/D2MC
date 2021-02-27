@@ -6,6 +6,10 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import org.bukkit.Bukkit
 import java.awt.Color
+import java.io.File
+import java.time.Instant
+import kotlin.math.abs
+import kotlin.math.ceil
 import kotlin.math.round
 
 class CommandListener : ListenerAdapter() {
@@ -54,15 +58,47 @@ class CommandListener : ListenerAdapter() {
                 return
             }
 
+            Commands.Stats -> {
+                if (!File("/proc/stat").exists()) return
+                e.channel.sendTyping().queue()
+                val sb = StatBox()
+                var str = ""
+                val pUsage = sb.readCPUUsage()
+                for (i in pUsage) {
+                    var bar = "["
+                    repeat (5 * ceil(abs(i.value.div(100)) / 5).toInt()) {
+                        bar += "#"
+                    }
+                    repeat (20 - (5 * ceil(abs(i.value.div(100)) / 5).toInt())) {
+                        bar += "-"
+                    }
+                    bar += "]"
+                    str += "${i.key} - ${i.value}%"
+                    repeat ((4 - i.value.toString().length) + 4) { str += " " }
+                    str += "$bar\n"
+                }
+                e.channel.sendMessage(EmbedBuilder()
+                        .setTitle("CPU usage")
+                        .setColor(Color.blue)
+                        .addField("Server Uptime: " +
+                            "${(Instant.now().epochSecond - Bot.bootTime).div(3600)} hours, " +
+                                "${((Instant.now().epochSecond - Bot.bootTime) % (3600)).div(60)} minutes",
+                                str,
+                                false)
+                        .build()
+                ).queue()
+                return
+            }
+
             Commands.TPS -> {
                 val tps = Bukkit.getTPS()
                 val newTPS = Array<Double>(3){ n -> round(tps[n] * 100).div(100) }
                 e.channel.sendMessage(
                     EmbedBuilder()
                         .setColor(
-                            if (newTPS[0] >= 15.0) {
+                            if (newTPS[0] >= 17.0) {
                                 Color.green
-                            } else if (newTPS[0] >= 11.0) {
+                            } else if (newTPS[0] >= 14.0) {
                                 Color.orange
                             } else Color.red
                         )

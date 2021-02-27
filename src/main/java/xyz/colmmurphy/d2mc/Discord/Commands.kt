@@ -7,6 +7,8 @@ enum class Commands (val aliases: List<String>, val description: String,) {
         "Gives the server's IP"),
     Playerlist(listOf("playerlist", "players", "online"),
         "Gives a list of all players currently online"),
+    Stats(listOf("stats", "stat", "info", "specs"),
+        "Shows the server's current resource usage"),
     TPS(listOf("tps"),
         "Shows the server's ticks per second");
 
