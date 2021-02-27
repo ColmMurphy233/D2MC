@@ -17,7 +17,10 @@ class CommandListener : ListenerAdapter() {
         if (e.author.isBot || e.isWebhookMessage || e.channel.id != dotenv()["CHANNEL"]) return
         val msg = e.message.contentRaw.split(" ")
         // finds the Command enum that the alias belongs to
-        val command: Commands = Commands.belongsTo(msg[0]) ?: return
+        val command: Commands? = Commands.belongsTo(msg[0])
+        if (command == null) {
+            Bukkit.broadcastMessage("[Discord]<${e.author.name}>${e.message.contentStripped}")
+        }
         when (command) {
             Commands.Help -> {
                 var str = ""

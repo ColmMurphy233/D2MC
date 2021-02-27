@@ -66,6 +66,6 @@ class MessageListener : ListenerAdapter() {
 //                return
 //            }
 //        }
-        Bukkit.broadcastMessage("[Discord]<${event.author.name}>${event.message.contentStripped}")
+        // Bukkit.broadcastMessage("[Discord]<${event.author.name}>${event.message.contentStripped}")
     }
 }
