@@ -20,6 +20,7 @@ class CommandListener : ListenerAdapter() {
         val command: Commands? = Commands.belongsTo(msg[0])
         if (command == null) {
             Bukkit.broadcastMessage("[Discord]<${e.author.name}>${e.message.contentStripped}")
+            return
         }
         when (command) {
             Commands.Help -> {
