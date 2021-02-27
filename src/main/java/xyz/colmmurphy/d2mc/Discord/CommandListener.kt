@@ -70,15 +70,21 @@ class CommandListener : ListenerAdapter() {
                 val pUsage = sb.readCPUUsage()
                 for (i in pUsage) {
                     var bar = "["
-                    repeat (5 * ceil(abs(i.value.div(100)) / 5).toInt()) {
+
+                    // adds a # for every 5% of cpu usage (rounds up)
+                    repeat(ceil(i.value.div(5)).toInt()) {
                         bar += "#"
                     }
-                    repeat (20 - (5 * ceil(abs(i.value.div(100)) / 5).toInt())) {
+
+                    // fills the rest of the bar with '-' characters
+                    repeat(20 - ceil(i.value.div(5)).toInt()) {
                         bar += "-"
                     }
                     bar += "]"
                     str += "${i.key} - ${i.value}%"
-                    repeat ((4 - i.value.toString().length) + 4) { str += " " }
+
+                    // fixes ugly spacing issues
+                    repeat((4 - i.value.toString().length) + 4) { str += " " }
                     str += "$bar\n"
                 }
                 e.channel.sendMessage(EmbedBuilder()
