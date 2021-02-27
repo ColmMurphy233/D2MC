@@ -8,6 +8,7 @@ import xyz.colmmurphy.d2mc.Inbox.Inbox
 class AdvancementListener : Listener {
     @EventHandler
     fun onAdvancementGet(event: PlayerAdvancementDoneEvent) {
+        println("[D2MC] AdvancementListener: ${event.advancement.key}")
         /**
          * I've disabled this function temporarily because of issues with it
          */

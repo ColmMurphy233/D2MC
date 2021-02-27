@@ -81,21 +81,17 @@ class CommandListener : ListenerAdapter() {
                         bar += "-"
                     }
                     bar += "]"
-                    str += "${i.key} - ${i.value}%"
+                    str += "core ${i.key} - ${i.value}%"
 
                     // fixes ugly spacing issues
                     repeat((4 - i.value.toString().length) + 4) { str += " " }
                     str += "$bar\n"
                 }
-                e.channel.sendMessage(EmbedBuilder()
-                        .setTitle("CPU usage")
-                        .setColor(Color.blue)
-                        .addField("Server Uptime: " +
-                            "${(Instant.now().epochSecond - Bot.bootTime).div(3600)} hours, " +
-                                "${((Instant.now().epochSecond - Bot.bootTime) % (3600)).div(60)} minutes",
-                                str,
-                                false)
-                        .build()
+                e.channel.sendMessage("```" +
+                        "Server Uptime: ${(Instant.now().epochSecond - Bot.bootTime).div(3600)} hours, " +
+                        "${((Instant.now().epochSecond - Bot.bootTime) % (3600)).div(60)} minutes\n" +
+                        "\n${str}" +
+                        "```"
                 ).queue()
                 return
             }
